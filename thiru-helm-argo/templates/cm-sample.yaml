@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: thiru-order-config
+  namespace: thiru-helm-argo
 data:
   DATABASE_URL: {{ .Values.config.database_url }}
   PAYMENT_GATEWAY: {{ .Values.config.payment_gateway }}

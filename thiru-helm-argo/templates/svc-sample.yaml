@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: thiru-order-service
+  namespace: thiru-helm-argo
 spec:
   selector:
     app: thiru-order
