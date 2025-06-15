@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: thiru-order
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/thirumalai-py/kube-helm-argo-cd.git
+    path: thiru-helm-argo
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values-dev.yaml
+      parameters:
+        - name: replicaCount
+          value: "5"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: thiru-helm-argo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

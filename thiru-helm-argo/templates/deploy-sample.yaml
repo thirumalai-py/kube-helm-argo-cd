@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thiru-order
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: thiru-order
+  template:
+    metadata:
+      labels:
+        app: thiru-order
+    spec:
+      containers:
+      - name: thiru-order
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        volumeMounts:
+        - name: thiru-order-volume
+          mountPath: /usr/share/nginx/html/thiru-order
+        ports:
+        - containerPort: {{.Values.service.port }}
+      volumes:
+      - name: thiru-order-volume
+        configMap:
+          name: thiru-order-config

@@ -1,0 +1,14 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: latest
+
+service:
+  port: 80
+  targetPort: 80
+  type: ClusterIP
+
+config:
+  database_url: "postgres://devuser:password@order-db:5432/orders"
+  payment_gateway: "https://dev.example.com"
